@@ -16,23 +16,23 @@ public class CalculatorAppPhase3 {
 		String choice = "y";
 		while (choice.equalsIgnoreCase("y")) {
 			int firstEntry = Console.getInt(sc, "Enter the first number: ");
-			int selectedOp = Console.getInt(sc, "Please select the type of calculation to perform: ");
+			String selectedOp = Console.getRequiredString(sc, "Please select the type of calculation to perform: ");
 			int secondEntry = Console.getInt(sc, "Enter the second number: ");
 
 			switch (selectedOp){
-			case 1:
+			case "+":
 				System.out.println("Answer: "+ selectedFunction.addition(firstEntry, secondEntry));
 		    	break;
-			case 2:
+			case "-":
 				System.out.println("Answer: "+ selectedFunction.subtraction(firstEntry, secondEntry));
 				break;
-			case 3:
+			case "*":
 				System.out.println("Answer: "+ selectedFunction.multiplication(firstEntry, secondEntry));
 				break;
-			case 4:
+			case "/":
 				System.out.println("Answer: "+ selectedFunction.division(firstEntry, secondEntry));
 				break;
-			case 5:
+			case "%":
 				System.out.println("Answer: "+ selectedFunction.modulus(firstEntry, secondEntry));
 				break;			
 			
@@ -48,8 +48,8 @@ public class CalculatorAppPhase3 {
 	}
 	
 	private static void printMenu() {
-		System.out.println("Calculation Menu \n============== \nAddition (1) \nSubtraction (2) "
-				+ "\nMultiplication (3) \nDivision (4) \nModulus (5)");
+		System.out.println("Calculation Menu \n============== \nAddition (+) \nSubtraction (-) "
+				+ "\nMultiplication (*) \nDivision (/) \nModulus (%)");
 		System.out.println();
 	}
 	
