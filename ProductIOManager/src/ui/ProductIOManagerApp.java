@@ -4,13 +4,14 @@ import java.util.List;
 
 import business.Product;
 import db.DAO;
+import db.ProductDB;
 import db.ProductTextFile;
 import util.Console;
 import util.StringUtils;
 
 public class ProductIOManagerApp {
 
-	private static DAO<Product> productDAO = new ProductTextFile();
+	private static DAO<Product> productDAO = new ProductDB();
 
 	public static void main(String[] args) {
 		System.out.println("Welcome to the Product Manager - Text File Edition");
@@ -39,7 +40,7 @@ public class ProductIOManagerApp {
 			else if (action.equalsIgnoreCase("help")) {
 				displayMenu();
 			} 
-			else {
+			else if (!action.equalsIgnoreCase("exit")) {
 				System.out.println("Invalid command.");
 			}
 

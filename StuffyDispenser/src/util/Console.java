@@ -1,10 +1,12 @@
 package util;
-
 import java.util.Scanner;
 
+
 public class Console {
-    Scanner sc = new Scanner(System.in);
-	public static int getInt(Scanner sc, String prompt) {
+	
+	private static Scanner sc = new Scanner(System.in);
+	
+    public static int getInt(String prompt) {
         int i = 0;
         boolean isValid = false;
         while (!isValid) {
@@ -20,12 +22,12 @@ public class Console {
         return i;
     }
 
-    public static int getIntWithinRange(Scanner sc, String prompt,
+    public static int getIntWithinRange(String prompt,
             int min, int max) {
         int i = 0;
         boolean isValid = false;
         while (!isValid) {
-            i = getInt(sc, prompt);
+            i = getInt(prompt);
             if (i <= min) {
                 System.out.println("Error! Number must be greater than " + min);
             } else if (i >= max) {
@@ -37,7 +39,7 @@ public class Console {
         return i;
     }
 
-    public static String getRequiredString(Scanner sc, String prompt) {
+    public static String getRequiredString(String prompt) {
         String s = "";
         boolean isValid = false;
         while (!isValid) {
@@ -52,12 +54,12 @@ public class Console {
         return s;
     }
 
-    public static String getChoiceString(Scanner sc, String prompt,
+    public static String getChoiceString(String prompt,
             String s1, String s2) {
         String s = "";
         boolean isValid = false;
         while (!isValid) {
-            s = getRequiredString(sc, prompt);
+            s = getRequiredString(prompt);
             if (!s.equalsIgnoreCase(s1) && !s.equalsIgnoreCase(s2)) {
                 System.out.println("Error! Entry must be '" + s1 + "' or '" + s2 + "'. Try again.");
             } else {
@@ -67,7 +69,7 @@ public class Console {
         return s;
     }
 
-    public static double getDouble(Scanner sc, String prompt) {
+    public static double getDouble(String prompt) {
         double d = 0;
         boolean isValid = false;
         while (!isValid) {
@@ -83,11 +85,11 @@ public class Console {
         return d;
     }
 
-    public static double getDouble(Scanner sc, String prompt, double min, double max) {
+    public static double getDouble(String prompt, double min, double max) {
         double d = 0;
         boolean isValid = false;
         while (!isValid) {
-            d = getDouble(sc, prompt);
+            d = getDouble(prompt);
             if (d <= min) {
                 System.out.println(
                         "Error! Number must be greater than " + min + ".");
@@ -99,5 +101,10 @@ public class Console {
             }
         }
         return d;
+    }
+    
+    public static boolean getBoolean(String prompt, boolean isReviewer) {
+        boolean b = false;
+        return b;
     }
 }

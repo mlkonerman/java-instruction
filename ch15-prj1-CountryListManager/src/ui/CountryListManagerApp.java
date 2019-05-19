@@ -28,10 +28,11 @@ public class CountryListManagerApp {
 				// add a product
 				addCountry();
 
-			} 
-			else {
+			} else if (!action.equalsIgnoreCase("3")) {
 				System.out.println("Invalid command.");
-			}
+			} 
+			
+			
 
 		}
 		System.out.println("Bye");
