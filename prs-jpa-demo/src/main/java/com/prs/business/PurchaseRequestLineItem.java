@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class PurchaseRequestLineItem {
@@ -11,15 +13,19 @@ public class PurchaseRequestLineItem {
 	@Id //declares id the primary key
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	private int purchaseRequestId;
-	private int productId;
+	@ManyToOne
+	@JoinColumn(name = "PurchaseRequestID")
+	private PurchaseRequest purchaseRequest;
+	@ManyToOne
+	@JoinColumn(name = "ProductID")
+	private Product product;
 	private int quantity;
 	
-	public PurchaseRequestLineItem(int id, int purchaseRequestId, int productId, int quantity) {
+	public PurchaseRequestLineItem(int id, PurchaseRequest purchaseRequest, Product product, int quantity) {
 		super();
 		this.id = id;
-		this.purchaseRequestId = purchaseRequestId;
-		this.productId = productId;
+		this.purchaseRequest = purchaseRequest;
+		this.product = product;
 		this.quantity = quantity;
 	}
 
@@ -36,20 +42,20 @@ public class PurchaseRequestLineItem {
 		this.id = id;
 	}
 
-	public int getPurchaseRequestId() {
-		return purchaseRequestId;
+	public PurchaseRequest getPurchaseRequest() {
+		return purchaseRequest;
 	}
 
-	public void setPurchaseRequestId(int purchaseRequestId) {
-		this.purchaseRequestId = purchaseRequestId;
+	public void setPurchaseRequest(PurchaseRequest purchaseRequest) {
+		this.purchaseRequest = purchaseRequest;
 	}
 
-	public int getProductId() {
-		return productId;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProductId(int productId) {
-		this.productId = productId;
+	public void setProductId(Product product) {
+		this.product = product;
 	}
 
 	public int getQuantity() {
@@ -62,8 +68,8 @@ public class PurchaseRequestLineItem {
 	
 	@Override
 	public String toString() {
-		return "PurchaseRequestLineItem [id=" + id + ",PurchaseRequestID=" + purchaseRequestId +  
-				", ProductID=" + productId + ", Quantity=" + quantity +"]";		
+		return "PurchaseRequestLineItem [id=" + id + ",PurchaseRequest=" + purchaseRequest +  
+				", Product=" + product + ", Quantity=" + quantity +"]";		
 	}
 
 

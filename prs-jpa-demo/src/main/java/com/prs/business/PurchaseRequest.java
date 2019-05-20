@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class PurchaseRequest {
@@ -13,7 +15,9 @@ public class PurchaseRequest {
 	@Id //declares id the primary key
 	@GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private int id;
-	private int userId;
+	@ManyToOne
+	@JoinColumn(name = "userID")
+	private User user;
 	private String description;
 	private String justification;
 	private LocalDateTime dateNeeded;
@@ -23,12 +27,12 @@ public class PurchaseRequest {
 	private LocalDateTime submittedDate;
 	private String reasonForRejection;
 	
-	public PurchaseRequest(int id, int userId, String description, String justification, LocalDateTime dateNeeded,
+	public PurchaseRequest(int id, User user, String description, String justification, LocalDateTime dateNeeded,
 			String deliveryMode, String status, double total, LocalDateTime submittedDate,
 			String reasonForRejection) {
 	super();
 	this.id = id;
-	this.userId = userId;
+	this.user = user;
 	this.description = description;
 	this.justification = justification;
 	this.dateNeeded = dateNeeded;
@@ -52,12 +56,12 @@ public void setId(int id) {
 	this.id = id;
 }
 
-public int getUserId() {
-	return userId;
+public User getUser() {
+	return user;
 }
 
-public void setUserId(int userId) {
-	this.userId = userId;
+public void setUser(User user) {
+	this.user = user;
 }
 
 public String getDescription() {
@@ -126,7 +130,7 @@ public void setReasonForRejection(String reasonForRejection) {
 
 @Override
 public String toString() {
-	return "Purchase Request [id=" + id + ", UserID=" + userId + ", Description=" + description + 
+	return "Purchase Request [id=" + id + ", User=" + user + ", Description=" + description + 
 			", Justification=" + justification + ", DateNeeded=" + dateNeeded + 
 			", DeliveryMode=" + deliveryMode +", Status=" + status +", Total=" + total +
 			", DateSubmitted=" + submittedDate + ", ReasonForRejection=" + reasonForRejection +"]";

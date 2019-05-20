@@ -46,7 +46,6 @@ public class PrsJpaDemoApplication {
 				// list products
 				List<Product> products = ProductDB.getAll();
 				System.out.println(products.toString());
-				displayAllProducts();
 
 			} else if (action.equalsIgnoreCase("requests")) {
 				// list purchase requests
@@ -60,14 +59,9 @@ public class PrsJpaDemoApplication {
 
 			} else if (action.equalsIgnoreCase("help")) {
 				displayMenu();
-			} else if (action.equalsIgnoreCase("test")) {
-				List<Product> products = ProductDB.getAll();
-				System.out.println(products);
-			}
-			
-			else if (!action.equalsIgnoreCase("exit")) {
+			} else if (!action.equalsIgnoreCase("exit")) {
 				System.out.println("Invalid command.");
-			} 
+			}
 		}
 		System.out.println("Goodbye!");
 
@@ -84,23 +78,5 @@ public class PrsJpaDemoApplication {
 		System.out.println("help      - show this menu");
 		System.out.println("exit      - exit the app");
 	}
-	
-	private static void displayAllProducts() {
-		System.out.println("PRODUCT LIST: ");
-		System.out.println("=====================");
-		List<Product> products = ProductDB.getAll();
-		StringBuilder sb = new StringBuilder();
-		for (Product p : products) {
-			sb.append(StringUtils.padWithSpaces(Integer.toString(p.getId()), 3));
-			sb.append(StringUtils.padWithSpaces(p.getVendor().getName(), 20));
-			sb.append(StringUtils.padWithSpaces(p.getPartNumber(), 20));
-			sb.append(StringUtils.padWithSpaces(p.getName(), 75));
-			sb.append(StringUtils.padWithSpaces(Double.toString(p.getPrice()), 10));
-			sb.append("\n");
-		}
-		System.out.println(sb.toString());
-
-	}
-
 
 }
